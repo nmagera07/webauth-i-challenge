@@ -33,8 +33,8 @@ const FunStuff = (props) => {
         <div>
             <h1>Welcome to the GIF Machine!</h1>
             <div className="gif">
-            <img src={data.image_url} />
-            <button onClick={fetchData}>Find a random GIF</button>
+                <img src={data.image_url} />
+                <button onClick={fetchData}>Find a random GIF</button>
             </div>
         </div>
      );

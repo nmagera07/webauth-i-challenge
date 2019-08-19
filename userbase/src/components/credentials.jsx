@@ -46,10 +46,6 @@ const Credentials = (props) => {
     }
 
     const loginUser = e => {
-        const newUser = {
-            username: input.form.username,
-            password: input.form.password,
-        }
         axios
             .post('http://localhost:5000/api/login', {
                 username: input.form.username,
