@@ -6,6 +6,8 @@ const router = express.Router()
 
 const bcrypt = require('bcryptjs')
 
+const restricted = require('../auth/restricted.js')
+
 
 router.get('/', (req, res) => {
     res.send('You are connected')
@@ -35,7 +37,7 @@ router.post('/login', (req, res) => {
             if (user && bcrypt.compareSync(password, user.password)) {
                 res.status(200).json({ message: `Welcome ${user.username}!`})
             } else {
-                res.status(401).json({ message: 'Invalid credentials'})
+                res.status(401).json({ message: 'You shall not pass!!'})
             }
         })
         .catch(error => {
@@ -43,7 +45,7 @@ router.post('/login', (req, res) => {
         })
 })
 
-router.get('/users', (req, res) => {
+router.get('/users', restricted, (req, res) => {
     Users.find()
         .then(users => {
             res.json(users)
