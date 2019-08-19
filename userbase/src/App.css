@@ -48,6 +48,8 @@
   width: 150px;
   border-radius: 10px;
   margin-top: 25px;
+  cursor: pointer;
+  outline: none;
 }
 
 nav {

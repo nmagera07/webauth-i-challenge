@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react'
-
+import axios from 'axios'
 
 
 const Credentials = (props) => {
@@ -24,6 +24,45 @@ const Credentials = (props) => {
                 [e.target.name]: e.target.value
             }
         })
+    }
+
+    const registerUser = (e) => {
+        // e.preventDefault()
+        const newUser = {
+            username: input.form.username,
+            password: input.form.password,
+        }
+        axios 
+            .post('http://localhost:5000/api/register', newUser)
+            .then(response => {
+                console.log(response)
+                localStorage.setItem('token', response.data.token)
+                props.history.push('/funstuff')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        
+    }
+
+    const loginUser = e => {
+        const newUser = {
+            username: input.form.username,
+            password: input.form.password,
+        }
+        axios
+            .post('http://localhost:5000/api/login', {
+                username: input.form.username,
+                password: input.form.password,
+            })
+            .then(response => {
+                console.log(response)
+                localStorage.setItem('token', response.data.token)
+                props.history.push('/funstuff')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     if (!login) {
@@ -59,7 +98,7 @@ const Credentials = (props) => {
                         onChange={handleChanges}
                     />
                 </Form.Field>
-                <Button type="submit">Submit</Button> 
+                <Button type="submit" onClick={loginUser}>Login</Button> 
             </Form>
         </div>
         </div>
@@ -95,7 +134,7 @@ const Credentials = (props) => {
                         onChange={handleChanges}
                     />
                 </Form.Field>
-                <Button type="submit">Submit</Button> 
+                <Button type="submit" onClick={registerUser}>Register</Button> 
             </Form>
         </div>
         </div>
