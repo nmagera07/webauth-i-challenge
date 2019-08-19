@@ -36,6 +36,8 @@ const NavBar = (props) => {
         </div>
         )
     } 
+
+    // comment
 }
  
 export default NavBar;
