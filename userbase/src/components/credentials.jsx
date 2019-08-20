@@ -33,7 +33,8 @@ const Credentials = (props) => {
             password: input.form.password,
         }
         axios 
-            .post('http://localhost:5000/api/register', newUser)
+            // .post('http://localhost:5000/api/register', newUser)
+            .post('https://nmagera-giphy-app.herokuapp.com/register', newUser)
             .then(response => {
                 console.log(response)
                 localStorage.setItem('token', response.data.token)
@@ -47,9 +48,13 @@ const Credentials = (props) => {
 
     const loginUser = e => {
         axios
-            .post('http://localhost:5000/api/login', {
+            // .post('http://localhost:5000/api/login', {
+            //     username: input.form.username,
+            //     password: input.form.password,
+            // })
+            .post('https://nmagera-giphy-app.herokuapp.com/login', {
                 username: input.form.username,
-                password: input.form.password,
+                password: input.form.password
             })
             .then(response => {
                 console.log(response)

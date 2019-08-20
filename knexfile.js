@@ -17,19 +17,35 @@ module.exports = {
       directory: './database/seeds',
     },
   },
-    production: {
+   production: {
     client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
+    connection: process.env.DATABASE_URL,
+    useNullAsDefault: true,
     migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
+      directory: './database/migrations',
+      tableName: 'users',
+    },
+    seeds: { directory: './database/seeds' },
+    
+  migrations: {
+      directory: './database/migrations',
+      tableName: 'users'
+    },
+  },
+    testing: {
+      client: 'postgresql',
+      connection: {
+        host: process.env.DB_HOST,
+        port: 5431,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS
+      },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+      tableName: 'users',
+    },
+    seeds: { directory: './database/seeds' },
+  },
 };
