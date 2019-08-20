@@ -2,7 +2,10 @@ const bcrypt = require('bcryptjs')
 
 const Users = require('../users/users-model.js')
 
-module.exports = 
+module.exports = {
+    restricted,
+    restrictedTwo,
+}
 
 function restricted(req, res, next) {
     let { username, password } = req.headers

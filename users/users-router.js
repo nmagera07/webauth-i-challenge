@@ -7,6 +7,7 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 
 const restricted = require('../auth/restricted.js')
+const restrictedTwo = require('../auth/restricted.js')
 
 const jwt = require('jsonwebtoken')
 const secrets = require('../auth/secrets.js')
